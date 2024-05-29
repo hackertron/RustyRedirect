@@ -1,12 +1,13 @@
-use axum::extract::{Json, Path, Query};
+use axum::extract::{Extension, Json, Path, Query, Request};
 use axum::{routing::get, routing::patch, routing::post, Router};
 use log::{error, info};
 use tokio::net::TcpListener;
 
+mod handlers;
+use handlers::user_handler::register_users;
 #[tokio::main]
 async fn main() {
     env_logger::init();
-
     info!("Starting the application");
 
     let app = Router::new()
@@ -21,10 +22,6 @@ async fn main() {
     if let Err(e) = axum::serve(listener, app).await {
         error!("Failed to start the server: {}", e);
     }
-}
-
-async fn register_users() -> &'static str {
-    "register users !!"
 }
 
 async fn root() -> &'static str {
