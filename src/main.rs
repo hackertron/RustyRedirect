@@ -13,6 +13,7 @@ async fn main() {
     let app = Router::new()
         .route("/", get(root))
         .route("/users", post(register_users))
+        .route("/users", get(handlers::user_handler::get_users))
         .route("/foo", get(get_foo).post(post_foo))
         .route("/foo/bar", get(foo_bar));
 

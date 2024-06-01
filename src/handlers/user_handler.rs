@@ -13,3 +13,9 @@ pub async fn register_users(req: Request<axum::body::Body>) -> Response {
     info!("user registered");
     (StatusCode::CREATED, Json(response_json)).into_response()
 }
+
+pub async fn get_users(req: Request<axum::body::Body>) -> Response {
+    let response_json = json!({ "msg": "get users" });
+    info!("get users");
+    (StatusCode::OK, Json(response_json)).into_response()
+}
